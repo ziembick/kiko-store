@@ -75,6 +75,7 @@ const projectConfig = {
   cookie_secret: process.env.COOKIE_SECRET || "supersecret",
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
+  worker_mode: process.env.MEDUSA_WORKER_MODE,
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
   // redis_url: REDIS_URL
