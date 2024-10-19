@@ -2,7 +2,8 @@
   "store": {
     "currencies": [
       "eur",
-      "usd"
+      "usd",
+      "brl"
     ]
   },
   "users": [
