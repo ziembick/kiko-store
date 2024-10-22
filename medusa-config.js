@@ -50,7 +50,7 @@ const plugins = [
       settings: {
         products: {
           indexSettings: {
-            searchableAttributes: ["title", "description"],
+            searchableAttributes: ["title", "description", "variant_sku"],
             attributesToRetrieve: [
               "id",
               "title",
@@ -63,12 +63,29 @@ const plugins = [
               "collection_title",
               "collection_handle",
               "images",
-            ]
-          }
-        }
+            ],
+          },
+          // O transformer irá alterar os dados do produto antes de enviá-los ao Algolia
+          transformer: (product) => ({
+            objectID: product.id, // O Algolia usa objectID como identificador único
+            title: product.title,
+            description: product.description,
+            handle: product.handle,
+            thumbnail: product.thumbnail,
+            variant_sku: product.variants.map(v => v.sku), // Mapeia SKUs das variantes
+            options: product.options.map(o => ({
+              title: o.title,
+              values: o.values
+            })),
+            collection_title: product.collection ? product.collection.title : null,
+            collection_handle: product.collection ? product.collection.handle : null,
+            images: product.images
+          }),
+        },
       },
     },
   },
+  
   {
     resolve: "@medusajs/admin",
     /** @type {import('@medusajs/admin').PluginOptions} */
