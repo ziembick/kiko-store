@@ -2,6 +2,8 @@ const express = require("express")
 const { GracefulShutdownServer } = require("medusa-core-utils")
 
 const loaders = require("@medusajs/medusa/dist/loaders/index").default
+const mercadopagoWebhook = require('./src/api/webhooks/mercadopago'); // Importando o webhook
+
 
 ;(async() => {
   async function start() {
@@ -15,6 +17,11 @@ const loaders = require("@medusajs/medusa/dist/loaders/index").default
       })
       const configModule = container.resolve("configModule")
       const port = process.env.PORT ?? configModule.projectConfig.port ?? 9000
+
+      app.use(express.json());
+
+      // Registra o webhook do Mercado Pago na rota '/webhooks'
+      app.use('/webhooks', mercadopagoWebhook);
 
       const server = GracefulShutdownServer.create(
         app.listen(port, (err) => {
