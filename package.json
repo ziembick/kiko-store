@@ -41,9 +41,11 @@
     "medusa-fulfillment-manual": "1.1.41",
     "medusa-interfaces": "1.3.10",
     "medusa-payment-manual": "1.0.25",
+    "medusa-payment-paypal": "^6.0.5",
     "medusa-payment-stripe": "^6.0.11",
     "medusa-plugin-algolia": "^0.2.21",
     "medusa-plugin-sendgrid": "^1.3.13",
+    "mercadopago": "^2.0.15",
     "prism-react-renderer": "^2.0.4",
     "typeorm": "0.3.16"
   },
