@@ -1,4 +1,5 @@
 const dotenv = require("dotenv");
+const { resolve } = require("path");
 
 let ENV_FILE_NAME = "";
 switch (process.env.NODE_ENV) {
@@ -117,12 +118,20 @@ const plugins = [
     },
   },
   {
-    resolve: `@minskylab/medusa-payment-mercadopago`,
+    resolve: `./src/services/mercado-pago-provider`,
     options: {
       access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
       success_backurl: process.env.MERCADOPAGO_SUCCESS_BACKURL,
       webhook_url: process.env.MERCADOPAGO_WEBHOOK_URL
     }, //hook do mercado pago
+  },
+  {
+    resolve:`./src/services/asaas-payment-provider`,
+    options: { 
+      api_url: process.env.ASAAS_API_URL,
+      api_key: process.env.ASAAS_API_KEY,
+      webhook_url: process.env.ASAAS_WEBHOOK 
+    },
   },
   
   {
