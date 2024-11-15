@@ -117,14 +117,14 @@ const plugins = [
       authWebhookId: process.env.PAYPAL_AUTH_WEBHOOK_ID,
     },
   },
-  {
-    resolve: `./src/services/mercado-pago-provider`,
-    options: {
-      access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
-      success_backurl: process.env.MERCADOPAGO_SUCCESS_BACKURL,
-      webhook_url: process.env.MERCADOPAGO_WEBHOOK_URL
-    }, //hook do mercado pago
-  },
+  // {
+  //   resolve: `./src/services/mercado-pago-provider`,
+  //   options: {
+  //     access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
+  //     success_backurl: process.env.MERCADOPAGO_SUCCESS_BACKURL,
+  //     webhook_url: process.env.MERCADOPAGO_WEBHOOK_URL
+  //   }, //hook do mercado pago
+  // },
   {
     resolve:`./src/services/asaas-payment-provider`,
     options: { 
