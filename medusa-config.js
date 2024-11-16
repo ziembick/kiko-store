@@ -125,14 +125,14 @@ const plugins = [
   //     webhook_url: process.env.MERCADOPAGO_WEBHOOK_URL
   //   }, //hook do mercado pago
   // },
-  {
-    resolve:`./src/services/asaas-payment-provider`,
-    options: { 
-      api_url: process.env.ASAAS_API_URL,
-      api_key: process.env.ASAAS_API_KEY,
-      webhook_url: process.env.ASAAS_WEBHOOK 
-    },
-  },
+  // {
+  //   resolve:`/src/services/asaas-payment-provider`,
+  //   options: { 
+  //     api_url: process.env.ASAAS_API_URL,
+  //     api_key: process.env.ASAAS_API_KEY,
+  //     webhook_url: process.env.ASAAS_WEBHOOK 
+  //   },
+  // },
   
   {
     resolve: "@medusajs/admin",
