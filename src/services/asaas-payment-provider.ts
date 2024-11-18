@@ -26,36 +26,37 @@ class AsaasPaymentProcessor extends AbstractPaymentProcessor {
     context: PaymentProcessorContext
   ): Promise<PaymentProcessorSessionResponse | PaymentProcessorError> {
     const { customer, amount } = context;
-
+  
     try {
       const response = await axios.post(
         `${ASAAS_API_URL}/payments`,
         {
-          customer: customer.id,
-          value: amount / 100,
+          customer: customer.id, // Substitua pelo ID do cliente no Asaas
+          billingType: "CREDIT_CARD", // Pode ser alterado para PIX, CARTÃO, etc.
+          value: amount / 100, // Valor em reais (o Asaas trabalha com valores decimais)
           description: "Compra realizada na loja Medusa",
-          dueDate: new Date().toISOString().split("T")[0],
+          dueDate: new Date().toISOString().split("T")[0], // Data de vencimento
         },
         {
           headers: {
-            Authorization: `Bearer ${ASAAS_API_KEY}`,
+            Authorization: `Bearer ${ASAAS_API_KEY}`, // Autenticação com API Key
+            "Content-Type": "application/json",
           },
         }
       );
-
+  
+      // Retorna o ID do pagamento criado para o session_data
       return {
         session_data: {
           asaas_payment_id: response.data.id,
         },
-        update_requests: {
-          customer_metadata: customer?.metadata,
-        },
       };
     } catch (error) {
       console.error("Erro ao iniciar o pagamento no Asaas:", error);
-      return { error };
+
     }
   }
+  
 
   /**
    * Autoriza o pagamento.
@@ -87,20 +88,27 @@ class AsaasPaymentProcessor extends AbstractPaymentProcessor {
     paymentSessionData: Record<string, unknown>
   ): Promise<Record<string, unknown> | PaymentProcessorError> {
     try {
+      const paymentId = paymentSessionData.asaas_payment_id;
+  
+      if (!paymentId) {
+        throw new Error("ID do pagamento não encontrado na sessão.");
+      }
+  
       const response = await axios.post(
-        `${ASAAS_API_URL}/payments/${paymentSessionData.asaas_payment_id}/capture`,
-        {},
+        `${ASAAS_API_URL}/payments/${paymentId}/capture`,
+        {}, // Corpo vazio para capturar pagamento
         {
           headers: {
             Authorization: `Bearer ${ASAAS_API_KEY}`,
+            "Content-Type": "application/json",
           },
         }
       );
-
-      return { ...response.data };
+  
+      return { status: "captured", ...response.data };
     } catch (error) {
       console.error("Erro ao capturar o pagamento no Asaas:", error);
-      return { error };
+      return { error: new Error("Falha ao capturar o pagamento.") };
     }
   }
 
