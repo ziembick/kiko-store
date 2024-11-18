@@ -170,7 +170,9 @@ const projectConfig = {
   worker_mode: process.env.MEDUSA_WORKER_MODE,
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
-  redis_url: REDIS_URL
+  redis_url: REDIS_URL,
+  api_key_asaas: process.env.ASAAS_API_KEY,
+  api_url_asaas: process.env.ASAAS_API_URL,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
