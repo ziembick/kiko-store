@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 
 class MyPaymentService extends AbstractPaymentProcessor {
-  static identifier = "pagamento"
+  static identifier = "asaas"
   protected paymentProviderService: PaymentProviderService;
   client: any;
 
