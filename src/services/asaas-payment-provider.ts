@@ -8,7 +8,7 @@ import {
 } from "@medusajs/medusa";
 import axios from "axios";
 
-class MyPaymentService extends AbstractPaymentProcessor {
+class AsaasPaymentProcessor extends AbstractPaymentProcessor {
   static identifier = "asaas"
   protected paymentProviderService: PaymentProviderService;
   client: any;
@@ -16,7 +16,6 @@ class MyPaymentService extends AbstractPaymentProcessor {
   constructor(container) {
     super(container);
 
-    // Acessa as configurações do projectConfig
     const { api_key_asaas, api_url_asaas } =
       container.resolve("configModule").projectConfig;
 
@@ -25,8 +24,7 @@ class MyPaymentService extends AbstractPaymentProcessor {
         "Asaas API Key ou URL não configurados no medusa-config.js"
       );
     }
-
-    // Inicializa o cliente com os valores configurados
+ 
     this.client = axios.create({
       baseURL: api_url_asaas,
       headers: {
@@ -126,7 +124,7 @@ class MyPaymentService extends AbstractPaymentProcessor {
     context: PaymentProcessorContext
   ): Promise<PaymentProcessorSessionResponse | PaymentProcessorError> {
     const { customer, amount } = context;
-
+    
     try {
       const response = await this.client.post(`/payments`, {
         customer: customer?.metadata?.asaas_id, // ID do cliente no Asaas
@@ -250,7 +248,7 @@ class MyPaymentService extends AbstractPaymentProcessor {
   
 }
 
-export default MyPaymentService
+export default AsaasPaymentProcessor
 
 // import {
 //   AbstractPaymentProcessor,

@@ -117,6 +117,12 @@ const plugins = [
       authWebhookId: process.env.PAYPAL_AUTH_WEBHOOK_ID,
     },
   },
+  {
+    resolve: `medusa-plugin-custom-dashboard`,
+    options: {
+        enableUI: true,
+    },
+},
   // {
   //   resolve: `./src/services/mercado-pago-provider`,
   //   options: {
