@@ -59,6 +59,9 @@ const plugins = [
     },
   },
   {
+    resolve: `medusa-plugin-wishlist`,
+  },
+  {
     resolve: `medusa-payment-stripe`,
     options: {
       api_key: process.env.STRIPE_API_KEY,
