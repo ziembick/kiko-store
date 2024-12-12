@@ -51,7 +51,7 @@
     "medusa-plugin-wishlist": "^1.1.44",
     "mercadopago": "^2.0.15",
     "prism-react-renderer": "^2.0.4",
-    "typeorm": "0.3.16"
+    "typeorm": "0.3.20"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
