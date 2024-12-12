@@ -48,7 +48,7 @@ const plugins = [
   //   options: {
   //     api_key: process.env.SENDGRID_API_KEY,
   //     from: process.env.SENDGRID_FROM,
-  //     order_placed_template: 
+  //     order_placed_template:
   //       process.env.SENDGRID_ORDER_PLACED_ID,
   //     localization: {
   //       "de-DE": { // locale key
@@ -98,14 +98,18 @@ const plugins = [
             description: product.description,
             handle: product.handle,
             thumbnail: product.thumbnail,
-            variant_sku: product.variants.map(v => v.sku), // Mapeia SKUs das variantes
-            options: product.options.map(o => ({
+            variant_sku: product.variants.map((v) => v.sku), // Mapeia SKUs das variantes
+            options: product.options.map((o) => ({
               title: o.title,
-              values: o.values
+              values: o.values,
             })),
-            collection_title: product.collection ? product.collection.title : null,
-            collection_handle: product.collection ? product.collection.handle : null,
-            images: product.images
+            collection_title: product.collection
+              ? product.collection.title
+              : null,
+            collection_handle: product.collection
+              ? product.collection.handle
+              : null,
+            images: product.images,
           }),
         },
       },
@@ -114,8 +118,8 @@ const plugins = [
   {
     resolve: `@rsc-labs/medusa-store-analytics`,
     options: {
-      enableUI: true
-    }
+      enableUI: true,
+    },
   },
   {
     resolve: `medusa-payment-paypal`,
@@ -129,26 +133,26 @@ const plugins = [
   {
     resolve: `medusa-plugin-custom-dashboard`,
     options: {
-        enableUI: true,
+      enableUI: true,
     },
-},
-  // {
-  //   resolve: `./src/services/mercado-pago-provider`,
-  //   options: {
-  //     access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
-  //     success_backurl: process.env.MERCADOPAGO_SUCCESS_BACKURL,
-  //     webhook_url: process.env.MERCADOPAGO_WEBHOOK_URL
-  //   }, //hook do mercado pago
-  // },
+  },
+  {
+    resolve: `@minskylab/medusa-payment-mercadopago`,
+    options: {
+      access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
+      success_backurl: process.env.MERCADOPAGO_SUCCESS_BACKURL,
+      webhook_url: process.env.MERCADOPAGO_WEBHOOK_URL,
+    }, //hook do mercado pago
+  },
   // {
   //   resolve:`/src/services/asaas-payment-provider`,
-  //   options: { 
+  //   options: {
   //     api_url: process.env.ASAAS_API_URL,
   //     api_key: process.env.ASAAS_API_KEY,
-  //     webhook_url: process.env.ASAAS_WEBHOOK 
+  //     webhook_url: process.env.ASAAS_WEBHOOK
   //   },
   // },
-  
+
   {
     resolve: "@medusajs/admin",
     /** @type {import('@medusajs/admin').PluginOptions} */
@@ -165,14 +169,14 @@ const modules = {
   eventBus: {
     resolve: "@medusajs/event-bus-redis",
     options: {
-      redisUrl: REDIS_URL
-    }
+      redisUrl: REDIS_URL,
+    },
   },
   cacheService: {
     resolve: "@medusajs/cache-redis",
     options: {
-      redisUrl: REDIS_URL
-    }
+      redisUrl: REDIS_URL,
+    },
   },
 };
 
