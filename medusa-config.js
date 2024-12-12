@@ -43,21 +43,21 @@ const plugins = [
       upload_dir: "uploads",
     },
   },
-  {
-    resolve: `medusa-plugin-sendgrid`,
-    options: {
-      api_key: process.env.SENDGRID_API_KEY,
-      from: process.env.SENDGRID_FROM,
-      order_placed_template: 
-        process.env.SENDGRID_ORDER_PLACED_ID,
-      localization: {
-        "de-DE": { // locale key
-          order_placed_template:
-            process.env.SENDGRID_ORDER_PLACED_ID_LOCALIZED,
-        },
-      },
-    },
-  },
+  // {
+  //   resolve: `medusa-plugin-sendgrid`,
+  //   options: {
+  //     api_key: process.env.SENDGRID_API_KEY,
+  //     from: process.env.SENDGRID_FROM,
+  //     order_placed_template: 
+  //       process.env.SENDGRID_ORDER_PLACED_ID,
+  //     localization: {
+  //       "de-DE": { // locale key
+  //         order_placed_template:
+  //           process.env.SENDGRID_ORDER_PLACED_ID_LOCALIZED,
+  //       },
+  //     },
+  //   },
+  // },
   {
     resolve: `medusa-plugin-wishlist`,
   },
@@ -186,8 +186,8 @@ const projectConfig = {
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
   redis_url: REDIS_URL,
-  api_key_asaas: process.env.ASAAS_API_KEY,
-  api_url_asaas: process.env.ASAAS_API_URL,
+  // api_key_asaas: process.env.ASAAS_API_KEY,
+  // api_url_asaas: process.env.ASAAS_API_URL,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
