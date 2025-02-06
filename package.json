@@ -24,6 +24,7 @@
     "start:custom": "cross-env npm run build && node --preserve-symlinks --trace-warnings index.js",
     "dev": "cross-env npm run build:server && medusa develop"
   },
+
   "dependencies": {
     "@medusajs/admin": "^7.1.16",
     "@medusajs/cache-inmemory": "1.8.11",
@@ -35,6 +36,7 @@
     "@minskylab/medusa-payment-mercadopago": "^0.0.6",
     "@rsc-labs/medusa-store-analytics": "^0.14.2",
     "@tanstack/react-query": "4.22.0",
+    "ajv": "^8.17.1",
     "axios": "^1.7.7",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
