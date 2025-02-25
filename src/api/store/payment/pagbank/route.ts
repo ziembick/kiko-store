@@ -13,7 +13,7 @@ export async function POST(
   try {
     
 
-    // Enable signature verification after talking to pagbank support
+  // Enable signature verification after talking to pagbank support
 	// signature is not sent in the web hook currently
 	// const rawBody = JSON.stringify(req.body);
 	// const signature = req.headers["x-authenticity-token"] as string;
